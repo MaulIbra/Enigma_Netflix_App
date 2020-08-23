@@ -25,6 +25,7 @@ class MovieViewModel:ViewModel() {
 
     val movie:LiveData<Movie> = movieRepository.movie
     val movieList:LiveData<List<Movie>> = movieRepository.movieList
+    val message:LiveData<String> = movieRepository.message
 
     fun getMovie(){
         movieRepository.getMovie()

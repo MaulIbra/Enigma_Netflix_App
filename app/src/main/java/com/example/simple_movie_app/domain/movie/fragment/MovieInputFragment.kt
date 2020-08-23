@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 
 import com.example.simple_movie_app.R
 import com.example.simple_movie_app.domain.movie.MovieViewModel
@@ -31,6 +33,9 @@ class MovieInputFragment : Fragment(),View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btnSubmit.setOnClickListener(this)
+        movieViewModel.message.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context,"Insert data $it",Toast.LENGTH_SHORT).show()
+        })
     }
 
     override fun onClick(p0: View?) {

@@ -21,6 +21,7 @@ class MovieRepository(val movieApiService: MovieApiService) {
 
     val movieList: MutableLiveData<List<Movie>> = MutableLiveData()
     val movie: MutableLiveData<Movie> = MutableLiveData()
+    val message:MutableLiveData<String> = MutableLiveData()
 
     fun getMovie() {
         movieApiService.getMovie().enqueue(object : Callback<WrapperResponse> {
@@ -73,7 +74,11 @@ class MovieRepository(val movieApiService: MovieApiService) {
                 call: Call<WrapperResponse>,
                 response: Response<WrapperResponse>
             ) {
-                println("SUCCESS POST: $response")
+                if (response.code() == 201){
+                    message.value = "Success"
+                }else{
+                    message.value = "Failed"
+                }
             }
         })
     }
